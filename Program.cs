@@ -10,10 +10,11 @@ namespace escuela
             var EscuelaObj = new Escuela(
                 nombre: "Exodus Academy", 
                 direccion: "Angol, Concepción, Chile", 
-                anioFundacion: 2018
+                anioFundacion: 2018,
+                tipoEscuela: TiposEscuelas.Universitaria
                 );
 
-            Console.WriteLine(EscuelaObj.Nombre);
+            Console.WriteLine(EscuelaObj);
         }
     }
 }
