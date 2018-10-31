@@ -1,4 +1,4 @@
-namespace escuela.Entidades
+namespace escuela.entidades
 {
     class Escuela
     {
