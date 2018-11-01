@@ -1,5 +1,6 @@
 ﻿using System;
 using escuela.entidades;
+using static System.Console;
 
 namespace escuela
 {
@@ -14,29 +15,43 @@ namespace escuela
                 tipoEscuela: TiposEscuelas.Universitaria
                 );
 
-            var Curso1 = new Curso()
-            {
-                Nombre = "A-1",
-                Jornada = TiposJornadas.Diurna
+            EscuelaObj.Cursos = new Curso[]{
+                new Curso
+                {
+                    Nombre = "A-1",
+                    Jornada = TiposJornadas.Diurna
+                },
+                new Curso
+                {
+                    Nombre = "B-1",
+                    Jornada = TiposJornadas.Vespertina
+                },
+                new Curso
+                {
+                    Nombre = "C-3",
+                    Jornada = TiposJornadas.Diurna
+                }
             };
 
-            var Curso2 = new Curso()
-            {
-                Nombre = "B-1",
-                Jornada = TiposJornadas.Vespertina
-            };
+            WriteLine("===================");
+            WriteLine("Datos de la Escuela");
+            WriteLine("===================");
+            WriteLine(EscuelaObj);
+            WriteLine("===================");
+            WriteLine("Cursos registrados");
+            WriteLine("===================");
+            ImprimirCursosEscuela(EscuelaObj);
+        }
 
-            var Curso3 = new Curso()
+        private static void ImprimirCursosEscuela(Escuela escuelaObj)
+        {
+            if (escuelaObj?.Cursos != null)
             {
-                Nombre = "C-3",
-                Jornada = TiposJornadas.Diurna
-            };
-
-            Console.WriteLine(EscuelaObj);
-            Console.WriteLine("===================");
-            Console.WriteLine($"{Curso1.Nombre} , {Curso1.Id} , {Curso1.Jornada}");
-            Console.WriteLine($"{Curso2.Nombre} , {Curso2.Id} , {Curso2.Jornada}");
-            Console.WriteLine($"{Curso3.Nombre} , {Curso3.Id} , {Curso3.Jornada}");
+                foreach (var Curso in escuelaObj.Cursos)
+                {
+                    WriteLine($"{Curso.Nombre} , {Curso.Id} , {Curso.Jornada}");
+                }
+            }
         }
     }
 }
