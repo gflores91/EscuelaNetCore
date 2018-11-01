@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace escuela.entidades
 {
     class Escuela
@@ -6,7 +8,7 @@ namespace escuela.entidades
         public string Direccion { get; set; }
         public int AnioFundacion { get; set; }
         public TiposEscuelas TipoEscuela { get; set; }
-        public Curso[] Cursos { get; set; }     
+        public List<Curso> Cursos { get; set; }     
 
         public Escuela (string nombre, string direccion, int anioFundacion, TiposEscuelas tipoEscuela) => 
         (Nombre, Direccion, AnioFundacion, TipoEscuela) = (nombre, direccion, anioFundacion, tipoEscuela);

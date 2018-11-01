@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using escuela.entidades;
 using static System.Console;
 
@@ -15,7 +16,7 @@ namespace escuela
                 tipoEscuela: TiposEscuelas.Universitaria
                 );
 
-            EscuelaObj.Cursos = new Curso[]{
+            EscuelaObj.Cursos = new List<Curso>(){
                 new Curso
                 {
                     Nombre = "A-1",
@@ -41,6 +42,14 @@ namespace escuela
             WriteLine("Cursos registrados");
             WriteLine("===================");
             ImprimirCursosEscuela(EscuelaObj);
+
+            WriteLine("===================");
+            WriteLine("Eliminar clase C3");
+            WriteLine("===================");
+
+            EscuelaObj.Cursos.RemoveAll((curso) => curso.Nombre == "C-3");
+
+            ImprimirCursosEscuela(EscuelaObj);   
         }
 
         private static void ImprimirCursosEscuela(Escuela escuelaObj)
