@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using escuela.app;
-using escuela.entidades;
+using escuela.App;
+using escuela.Entidades;
 using escuela.Util;
 using static System.Console;
 
