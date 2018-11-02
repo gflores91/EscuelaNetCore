@@ -1,6 +1,6 @@
 namespace escuela.entidades
 {
-    enum TiposEscuelas
+    public enum TiposEscuelas
     {
         Kinder,
         Básica,

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using escuela.app;
 using escuela.entidades;
+using escuela.Util;
 using static System.Console;
 
 namespace escuela
@@ -9,47 +11,22 @@ namespace escuela
     {
         static void Main(string[] args)
         {
-            var EscuelaObj = new Escuela(
-                nombre: "Exodus Academy", 
-                direccion: "Angol, Concepción, Chile", 
-                anioFundacion: 2018,
-                tipoEscuela: TiposEscuelas.Universitaria
-                );
+            var Engine = new EscuelaEngine();
+            Engine.Inicializar();
 
-            EscuelaObj.Cursos = new List<Curso>(){
-                new Curso
-                {
-                    Nombre = "A-1",
-                    Jornada = TiposJornadas.Diurna
-                },
-                new Curso
-                {
-                    Nombre = "B-1",
-                    Jornada = TiposJornadas.Vespertina
-                },
-                new Curso
-                {
-                    Nombre = "C-3",
-                    Jornada = TiposJornadas.Diurna
-                }
-            };
+            Printer.WriteTitle("Datos de la escuela");
+            WriteLine(Engine.Escuela);
+            Printer.WriteTitle("Cursos registrados");
+            ImprimirCursosEscuela(Engine.Escuela);
 
-            WriteLine("===================");
-            WriteLine("Datos de la Escuela");
-            WriteLine("===================");
-            WriteLine(EscuelaObj);
-            WriteLine("===================");
-            WriteLine("Cursos registrados");
-            WriteLine("===================");
-            ImprimirCursosEscuela(EscuelaObj);
+            Printer.WriteTitle("Eliminar clase C-3");
 
-            WriteLine("===================");
-            WriteLine("Eliminar clase C3");
-            WriteLine("===================");
+            Engine.Escuela.Cursos.RemoveAll((curso) => curso.Nombre == "C-3");
 
-            EscuelaObj.Cursos.RemoveAll((curso) => curso.Nombre == "C-3");
+            ImprimirCursosEscuela(Engine.Escuela);
 
-            ImprimirCursosEscuela(EscuelaObj);   
+            Printer.WriteTitle("Tocar timbre");
+            Printer.Timbre(1000, repetir:3);
         }
 
         private static void ImprimirCursosEscuela(Escuela escuelaObj)
