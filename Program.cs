@@ -17,27 +17,19 @@ namespace escuela
             Printer.WriteTitle("Datos de la escuela");
             WriteLine(Engine.Escuela);
             Printer.WriteTitle("Cursos registrados");
-            ImprimirCursosEscuela(Engine.Escuela);
+            Printer.ImprimirCursosEscuela(Engine.Escuela);
 
             Printer.WriteTitle("Eliminar clase C-3");
 
             Engine.Escuela.Cursos.RemoveAll((curso) => curso.Nombre == "C-3");
 
-            ImprimirCursosEscuela(Engine.Escuela);
+            Printer.ImprimirCursosEscuela(Engine.Escuela);
+
+            Printer.WriteTitle("Alumnos registrados por curso");
+            Printer.ImprimirAlumnosCurso(Engine.Escuela);
 
             Printer.WriteTitle("Tocar timbre");
             Printer.Timbre(1000, repetir:3);
-        }
-
-        private static void ImprimirCursosEscuela(Escuela escuelaObj)
-        {
-            if (escuelaObj?.Cursos != null)
-            {
-                foreach (var Curso in escuelaObj.Cursos)
-                {
-                    WriteLine($"{Curso.Nombre} , {Curso.Id} , {Curso.Jornada}");
-                }
-            }
         }
     }
 }

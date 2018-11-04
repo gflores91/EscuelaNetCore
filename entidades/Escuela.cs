@@ -8,7 +8,7 @@ namespace escuela.Entidades
         public string Direccion { get; set; }
         public int AnioFundacion { get; set; }
         public TiposEscuelas TipoEscuela { get; set; }
-        public List<Curso> Cursos { get; set; }   
+        public List<Curso> Cursos { get; set; }
 
         public Escuela (string nombre, string direccion, int anioFundacion, TiposEscuelas tipoEscuela) => 
         (Nombre, Direccion, AnioFundacion, TipoEscuela) = (nombre, direccion, anioFundacion, tipoEscuela);

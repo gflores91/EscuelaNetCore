@@ -9,6 +9,7 @@ namespace escuela.Entidades
         public TiposJornadas Jornada { get; set; }
         public List<Asignatura> Asignaturas { get; set; }  
         public List<Alumno> Alumnos { get; set; }
+        
         public Curso()
         {
             Id = System.Guid.NewGuid().ToString();
