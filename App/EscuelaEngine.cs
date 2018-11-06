@@ -5,7 +5,7 @@ using escuela.Entidades;
 
 namespace escuela.App
 {
-    public class EscuelaEngine
+    public sealed class EscuelaEngine
     {
         public Escuela Escuela { get; set; }
 
@@ -25,7 +25,7 @@ namespace escuela.App
 
         private void CargarEscuela()
         {
-            Escuela = new Escuela(
+            Escuela = new Entidades.Escuela(
                nombre: "Exodus Academy",
                direccion: "Angol, Concepción, Chile",
                anioFundacion: 2018,
@@ -103,13 +103,13 @@ namespace escuela.App
 
                         for (int i = 0; i < 5; i++)
                         {
-                            var evaluacion = new Evaluaciones(){
+                            var evaluacion = new Evaluacion(){
                                 Asignatura = asignatura,
                                 Nombre = $"{asignatura.Nombre} Evaluacion#{i+1}",
                                 Nota = (float)(5 * rnd.NextDouble()),
                                 Alumno = alumno
                             };
-                            alumno.Evaluacion.Add(evaluacion);
+                            alumno.Evaluaciones.Add(evaluacion);
                         }
                     }
                 }

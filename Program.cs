@@ -15,7 +15,7 @@ namespace escuela
             Engine.Inicializar();
 
             Printer.WriteTitle("Datos de la escuela");
-            WriteLine(Engine.Escuela);
+            WriteLine((object)Engine.Escuela);
             Printer.WriteTitle("Cursos registrados");
             Printer.ImprimirCursosEscuela(Engine.Escuela);
 

@@ -18,7 +18,7 @@ namespace escuela.Util
             DibujarLinea(linea);            
         }
 
-         public static void ImprimirCursosEscuela(Escuela escuelaObj)
+         public static void ImprimirCursosEscuela(Entidades.Escuela escuelaObj)
         {
             if (escuelaObj?.Cursos != null)
             {
@@ -29,7 +29,7 @@ namespace escuela.Util
             }
         }
 
-        public static void ImprimirAlumnosCurso(Escuela escuelaObj)
+        public static void ImprimirAlumnosCurso(Entidades.Escuela escuelaObj)
         {
             if (escuelaObj?.Cursos != null)
             {

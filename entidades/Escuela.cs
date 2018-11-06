@@ -2,9 +2,8 @@ using System.Collections.Generic;
 
 namespace escuela.Entidades
 {
-    public class Escuela
+    public class Escuela: ObjetoEscuelaBase
     {
-        public string Nombre { get; set; }
         public string Direccion { get; set; }
         public int AnioFundacion { get; set; }
         public TiposEscuelas TipoEscuela { get; set; }
