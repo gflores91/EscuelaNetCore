@@ -31,6 +31,9 @@ namespace escuela
 
             Printer.WriteTitle("Tocar timbre");
             Printer.Timbre(1000, repetir:3);
+
+            Printer.WriteTitle("Limpiando escuela");
+            Engine.Escuela.LimpiarLugar();
         }
     }
 }

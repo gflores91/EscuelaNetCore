@@ -23,6 +23,7 @@ namespace escuela.App
             CargarEvaluaciones();
         }
 
+        #region Métodos para cargar información
         private void CargarEscuela()
         {
             Escuela = new Entidades.Escuela(
@@ -57,8 +58,8 @@ namespace escuela.App
 
             foreach (var curso in Escuela.Cursos)
             {
-                int cantidad = rnd.Next(5,40);
-                curso.Alumnos = GenerarAlumnos(cantidad);   
+                int cantidad = rnd.Next(5, 40);
+                curso.Alumnos = GenerarAlumnos(cantidad);
             }
         }
 
@@ -77,20 +78,6 @@ namespace escuela.App
             }
         }
 
-        private List<Alumno> GenerarAlumnos(int cantidad)
-        {
-            string[] nombre1 = {"María","Gabriel","Alexis","Pablo","René"};
-            string[] nombre2 = {"Alicia","Flores","Torres","Alarcón","Tapia"};
-            string[] apellido = {"Cid","Monsalve","Torres","Sepulveda","Quezada"};
-
-            var ListaAlumnos =  from n1 in nombre1
-                                from n2 in nombre2
-                                from ap in apellido
-                                select new Alumno{Nombre = $"{n1} {n2} {ap}"};
-
-            return ListaAlumnos.OrderBy( (al) => al.Id ).Take(cantidad).ToList();
-        }
-
         private void CargarEvaluaciones()
         {
             foreach (var curso in Escuela.Cursos)
@@ -103,9 +90,10 @@ namespace escuela.App
 
                         for (int i = 0; i < 5; i++)
                         {
-                            var evaluacion = new Evaluacion(){
+                            var evaluacion = new Evaluacion()
+                            {
                                 Asignatura = asignatura,
-                                Nombre = $"{asignatura.Nombre} Evaluacion#{i+1}",
+                                Nombre = $"{asignatura.Nombre} Evaluacion#{i + 1}",
                                 Nota = (float)(5 * rnd.NextDouble()),
                                 Alumno = alumno
                             };
@@ -115,27 +103,57 @@ namespace escuela.App
                 }
             }
         }
+        #endregion
 
+        #region Métodos para generar información
+        private List<Alumno> GenerarAlumnos(int cantidad)
+        {
+            string[] nombre1 = { "María", "Gabriel", "Alexis", "Pablo", "René" };
+            string[] nombre2 = { "Alicia", "Flores", "Torres", "Alarcón", "Tapia" };
+            string[] apellido = { "Cid", "Monsalve", "Torres", "Sepulveda", "Quezada" };
+
+            var ListaAlumnos = from n1 in nombre1
+                               from n2 in nombre2
+                               from ap in apellido
+                               select new Alumno { Nombre = $"{n1} {n2} {ap}" };
+
+            return ListaAlumnos.OrderBy((al) => al.Id).Take(cantidad).ToList();
+        }
+        #endregion
+
+        #region Métodos para obtener información
         public List<ObjetoEscuelaBase> ObtenerObjEscuela()
         {
             var ObjEscuela = new List<ObjetoEscuelaBase>();
 
             ObjEscuela.Add(Escuela);
-            ObjEscuela.AddRange(Escuela.Cursos);   
+            ObjEscuela.AddRange(Escuela.Cursos);
 
             foreach (var curso in Escuela.Cursos)
             {
                 ObjEscuela.AddRange(curso.Asignaturas);
-                ObjEscuela.AddRange(curso.Alumnos);   
+                ObjEscuela.AddRange(curso.Alumnos);
 
                 foreach (var alumno in curso.Alumnos)
                 {
-                    ObjEscuela.AddRange(alumno.Evaluaciones);                    
+                    ObjEscuela.AddRange(alumno.Evaluaciones);
                 }
             }
-            
+
             return ObjEscuela;
         }
+
+        public IEnumerable<ILugar> ObtenerObjInterface()
+        {
+            var ObjInterface = new List<ObjetoEscuelaBase>();
+
+            var LObjInterfaces = from obj in ObjInterface
+                                 where obj is ILugar
+                                 select (ILugar)obj;
+
+            return LObjInterfaces;
+        }
+        #endregion
 
     }
 }

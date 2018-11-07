@@ -5,7 +5,7 @@ namespace escuela.Util
 {
     public static class Printer
     {
-        static void DibujarLinea(int tamlinea = 10)
+        public static void DibujarLinea(int tamlinea = 10)
         {
             Console.WriteLine("".PadLeft(tamlinea, '='));
         }
