@@ -13,6 +13,7 @@ namespace escuela
         {
             var Engine = new EscuelaEngine();
             Engine.Inicializar();
+            var ObjEscuela = Engine.ObtenerObjEscuela();
 
             Printer.WriteTitle("Datos de la escuela");
             WriteLine((object)Engine.Escuela);

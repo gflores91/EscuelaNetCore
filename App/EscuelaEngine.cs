@@ -116,5 +116,26 @@ namespace escuela.App
             }
         }
 
+        public List<ObjetoEscuelaBase> ObtenerObjEscuela()
+        {
+            var ObjEscuela = new List<ObjetoEscuelaBase>();
+
+            ObjEscuela.Add(Escuela);
+            ObjEscuela.AddRange(Escuela.Cursos);   
+
+            foreach (var curso in Escuela.Cursos)
+            {
+                ObjEscuela.AddRange(curso.Asignaturas);
+                ObjEscuela.AddRange(curso.Alumnos);   
+
+                foreach (var alumno in curso.Alumnos)
+                {
+                    ObjEscuela.AddRange(alumno.Evaluaciones);                    
+                }
+            }
+            
+            return ObjEscuela;
+        }
+
     }
 }
