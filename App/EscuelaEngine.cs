@@ -122,25 +122,98 @@ namespace escuela.App
         #endregion
 
         #region Métodos para obtener información
-        public List<ObjetoEscuelaBase> ObtenerObjEscuela()
+        int dummy = 0;
+        public IReadOnlyList<ObjetoEscuelaBase> ObtenerObjEscuela(
+            bool Cursos = true,
+            bool Asignaturas = true,
+            bool Alumnos = true,
+            bool Evaluaciones = true
+        )
         {
+            return ObtenerObjEscuela(out dummy, out dummy, out dummy, out dummy);
+        }
+        public IReadOnlyList<ObjetoEscuelaBase> ObtenerObjEscuela(
+            out int CuentaCursos,
+            bool Cursos = true,
+            bool Asignaturas = true,
+            bool Alumnos = true,
+            bool Evaluaciones = true
+
+        )
+        {
+            return ObtenerObjEscuela(out CuentaCursos, out dummy, out dummy, out dummy);
+        }
+        public IReadOnlyList<ObjetoEscuelaBase> ObtenerObjEscuela(
+            out int CuentaCursos,
+            out int CuentaAsignaturas,
+            bool Cursos = true,
+            bool Asignaturas = true,
+            bool Alumnos = true,
+            bool Evaluaciones = true
+
+        )
+        {
+            return ObtenerObjEscuela(out CuentaCursos, out CuentaAsignaturas, out dummy, out dummy);
+        }
+
+        public IReadOnlyList<ObjetoEscuelaBase> ObtenerObjEscuela(
+            out int CuentaCursos,
+            out int CuentaAsignaturas,
+            out int CuentaAlumnos,
+            bool Cursos = true,
+            bool Asignaturas = true,
+            bool Alumnos = true,
+            bool Evaluaciones = true
+
+        )
+        {
+            return ObtenerObjEscuela(out CuentaCursos, out CuentaAsignaturas, out CuentaAlumnos, out dummy);
+        }
+
+        public IReadOnlyList<ObjetoEscuelaBase> ObtenerObjEscuela(
+            out int CuentaCursos,
+            out int CuentaAsignaturas,
+            out int CuentaAlumnos,
+            out int CuentaEvaluaciones,
+            bool Cursos = true,
+            bool Asignaturas = true,
+            bool Alumnos = true,
+            bool Evaluaciones = true
+
+        )
+        {
+            CuentaCursos = CuentaAsignaturas = CuentaAlumnos = CuentaEvaluaciones = 0;
+
             var ObjEscuela = new List<ObjetoEscuelaBase>();
 
             ObjEscuela.Add(Escuela);
-            ObjEscuela.AddRange(Escuela.Cursos);
+
+            if (Cursos)
+                ObjEscuela.AddRange(Escuela.Cursos);
+
+            CuentaCursos = Escuela.Cursos.Count;
 
             foreach (var curso in Escuela.Cursos)
             {
-                ObjEscuela.AddRange(curso.Asignaturas);
-                ObjEscuela.AddRange(curso.Alumnos);
+                CuentaAsignaturas += curso.Asignaturas.Count;
+                CuentaAlumnos += curso.Alumnos.Count;
+                if (Asignaturas)
+                    ObjEscuela.AddRange(curso.Asignaturas);
 
-                foreach (var alumno in curso.Alumnos)
+                if (Alumnos)
+                    ObjEscuela.AddRange(curso.Alumnos);
+
+                if (Evaluaciones)
                 {
-                    ObjEscuela.AddRange(alumno.Evaluaciones);
+                    foreach (var alumno in curso.Alumnos)
+                    {
+                        CuentaEvaluaciones += alumno.Evaluaciones.Count;
+                        ObjEscuela.AddRange(alumno.Evaluaciones);
+                    }
                 }
             }
 
-            return ObjEscuela;
+            return ObjEscuela.AsReadOnly();
         }
 
         public IEnumerable<ILugar> ObtenerObjInterface()
