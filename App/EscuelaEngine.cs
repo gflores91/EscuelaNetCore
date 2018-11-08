@@ -227,14 +227,33 @@ namespace escuela.App
             return LObjInterfaces;
         }
         #endregion
-        
+
         #region Diccionarios
         public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> ObtenerDiccionarioEscuela()
         {
             var Diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
 
-            Diccionario.Add(LlaveDiccionario.Escuela, new[] {Escuela});
+            Diccionario.Add(LlaveDiccionario.Escuela, new[] { Escuela });
             Diccionario.Add(LlaveDiccionario.Curso, Escuela.Cursos);
+
+            var LTmpAlumno = new List<Alumno>();
+            var LTmpAsinatura = new List<Asignatura>();
+            var LTmpEvaluacion = new List<Evaluacion>();
+
+            foreach (var curso in Escuela.Cursos)
+            {
+                LTmpAlumno.AddRange(curso.Alumnos);
+                LTmpAsinatura.AddRange(curso.Asignaturas);
+
+                foreach (var alumno in curso.Alumnos)
+                {
+                    LTmpEvaluacion.AddRange(alumno.Evaluaciones);
+                }
+
+            }
+            Diccionario.Add(LlaveDiccionario.Alumno, LTmpAlumno);
+            Diccionario.Add(LlaveDiccionario.Asignatura, LTmpAsinatura);
+            Diccionario.Add(LlaveDiccionario.Evaluacion, LTmpEvaluacion);
 
             return Diccionario;
         }

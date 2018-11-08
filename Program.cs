@@ -13,10 +13,9 @@ namespace escuela
         {
             var Engine = new EscuelaEngine();
             Engine.Inicializar();
-            var ObjEscuela = Engine.ObtenerObjEscuela();
 
             Printer.WriteTitle("Datos de la escuela");
-            WriteLine((object)Engine.Escuela);
+            WriteLine(Engine.Escuela);
             Printer.WriteTitle("Cursos registrados");
             Printer.ImprimirCursosEscuela(Engine.Escuela);
 
@@ -35,7 +34,8 @@ namespace escuela
             Printer.WriteTitle("Limpiando escuela");
             Engine.Escuela.LimpiarLugar();
 
-            Engine.ObtenerDiccionarioEscuela();
+            var Diccionario = Engine.ObtenerDiccionarioEscuela();
+            Printer.ImprimirDiccionario(Diccionario);
         }
     }
 }

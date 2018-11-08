@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using escuela.Entidades;
 
 namespace escuela.Util
@@ -51,6 +52,31 @@ namespace escuela.Util
                 Console.Beep(hz, tiempo);
             }
             
+        }
+
+        public static void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> Diccionario, bool TraeEvaluaciones = false)
+        {
+            foreach (var diccionario in Diccionario)
+            {
+                WriteTitle(diccionario.Key.ToString());
+
+                foreach (var valor in diccionario.Value)
+                {
+                    if(valor is Escuela)
+                        Console.WriteLine(valor);
+                    else if(valor is Curso)
+                        Console.WriteLine(valor.Nombre);
+                    else if(valor is Alumno)
+                        Console.WriteLine(valor.Nombre);
+                    else if(valor is Evaluacion)
+                    {
+                        if(TraeEvaluaciones)
+                            Console.WriteLine(valor);
+                    }
+                    else
+                        Console.WriteLine(valor.Nombre);
+                }
+            }
         }
     }
 }
