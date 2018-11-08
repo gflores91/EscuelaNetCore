@@ -227,6 +227,17 @@ namespace escuela.App
             return LObjInterfaces;
         }
         #endregion
+        
+        #region Diccionarios
+        public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> ObtenerDiccionarioEscuela()
+        {
+            var Diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
 
+            Diccionario.Add(LlaveDiccionario.Escuela, new[] {Escuela});
+            Diccionario.Add(LlaveDiccionario.Curso, Escuela.Cursos);
+
+            return Diccionario;
+        }
+        #endregion
     }
 }

@@ -34,6 +34,8 @@ namespace escuela
 
             Printer.WriteTitle("Limpiando escuela");
             Engine.Escuela.LimpiarLugar();
+
+            Engine.ObtenerDiccionarioEscuela();
         }
     }
 }
