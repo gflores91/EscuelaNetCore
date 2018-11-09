@@ -35,6 +35,12 @@ namespace escuela
 
             var Diccionario = Engine.ObtenerDiccionarioEscuela();
             Engine.ImprimirDiccionario(Diccionario, TraeEvaluaciones: true);
+
+            var Reporteador = new Reporteador(Diccionario);
+
+            var LEvaluaciones = Reporteador.ObtenerEvaluaciones();
+            var LEvaluacionesPorAsignatura = Reporteador.DicEvaluacionesPorAsignatura();
+            var LPromediosAlumnos = Reporteador.ObtenerPromedio();
         }
 
         private static void EjecutarEvento(object sender, EventArgs e)
