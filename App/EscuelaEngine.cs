@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using escuela.Entidades;
+using escuela.Util;
 
 namespace escuela.App
 {
@@ -80,21 +81,20 @@ namespace escuela.App
 
         private void CargarEvaluaciones()
         {
+            var rnd = new Random();
             foreach (var curso in Escuela.Cursos)
             {
                 foreach (var asignatura in curso.Asignaturas)
                 {
                     foreach (var alumno in curso.Alumnos)
                     {
-                        var rnd = new Random(System.Environment.TickCount);
-
                         for (int i = 0; i < 5; i++)
                         {
                             var evaluacion = new Evaluacion()
                             {
                                 Asignatura = asignatura,
                                 Nombre = $"{asignatura.Nombre} Evaluacion#{i + 1}",
-                                Nota = (float)(5 * rnd.NextDouble()),
+                                Nota = MathF.Round(7 * (float)rnd.NextDouble(), 2),
                                 Alumno = alumno
                             };
                             alumno.Evaluaciones.Add(evaluacion);
@@ -256,6 +256,76 @@ namespace escuela.App
             Diccionario.Add(LlaveDiccionario.Evaluacion, LTmpEvaluacion);
 
             return Diccionario;
+        }
+        #endregion
+
+        #region Métodos para imprimir infomación
+        public void ImprimirCursosEscuela(Escuela escuelaObj)
+        {
+            if (escuelaObj?.Cursos != null)
+            {
+                foreach (var Curso in escuelaObj.Cursos)
+                {
+                    Console.WriteLine($"{Curso.Nombre} , {Curso.Id} , {Curso.Jornada}");
+                }
+            }
+        }
+
+        public void ImprimirAlumnosCurso(Escuela escuelaObj)
+        {
+            if (escuelaObj?.Cursos != null)
+            {
+                foreach (var curso in escuelaObj.Cursos)
+                {
+                    Console.WriteLine($"\n{curso.Nombre} \n");
+                    foreach (var alumno in curso.Alumnos)
+                    {
+                        Console.WriteLine($"{alumno.Nombre}");
+                    }
+                }
+            }
+        }
+
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> Diccionario, bool TraeEvaluaciones = false)
+        {
+            foreach (var diccionario in Diccionario)
+            {
+                Printer.WriteTitle(diccionario.Key.ToString());
+
+                foreach (var valor in diccionario.Value)
+                {
+                    switch (diccionario.Key)
+                    {
+                        case LlaveDiccionario.Escuela:
+                            Console.WriteLine(valor);
+                            break;
+
+                        case LlaveDiccionario.Curso:
+                            var TmpCurso = valor as Curso;
+
+                            if (TmpCurso != null)
+                            {
+                                var CAlumnos = TmpCurso.Alumnos.Count();
+                                Console.WriteLine($"Curso: {valor.Nombre}, Cantidad de alumnos: {CAlumnos}");
+                            }
+
+                            break;
+
+                        case LlaveDiccionario.Alumno:
+                            Console.WriteLine(valor.Nombre);
+                            break;
+
+                        case LlaveDiccionario.Evaluacion:
+                            if (TraeEvaluaciones)
+                                Console.WriteLine(valor);
+                            break;
+
+                        default:
+                            Console.WriteLine(valor.Nombre);
+                            break;
+                    }
+                }
+            }
         }
         #endregion
     }
