@@ -41,6 +41,53 @@ namespace escuela
             var LEvaluaciones = Reporteador.ObtenerEvaluaciones();
             var LEvaluacionesPorAsignatura = Reporteador.DicEvaluacionesPorAsignatura();
             var LPromediosAlumnos = Reporteador.ObtenerPromedio();
+
+            var evaluacion = new Evaluacion();
+
+            Printer.WriteTitle("Ingresar datos por consola");
+            string NombreAlumno, NotaString;
+            float Nota;
+
+            Console.WriteLine("Ingrese Nombre del alumno");
+            NombreAlumno = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(NombreAlumno))
+            {
+                Console.WriteLine("Debe ingresar un nombre válido");
+            }
+
+            evaluacion.Alumno.Nombre = NombreAlumno;
+
+            Console.WriteLine("Ingrese nota del alumno");
+            NotaString = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(NotaString))
+            {
+                Console.WriteLine("Debe ingresar una nota válida");
+            }
+            else
+            {
+                try
+                {
+                    Nota = float.Parse(NotaString);
+                    if (Nota < 0 || Nota > 7)
+                    {
+                        throw new ArgumentOutOfRangeException("EL rango de la nota debe ser mayor a 0 y menor a 7");
+                    }
+                }
+                catch (ArgumentOutOfRangeException argex)
+                {
+
+                    Console.WriteLine(argex);
+                }
+                catch(Exception)
+                {
+                    Console.WriteLine("Debe ingresar una nota válida");
+                }
+            }
+
+
+
         }
 
         private static void EjecutarEvento(object sender, EventArgs e)
