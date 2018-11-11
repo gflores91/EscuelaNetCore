@@ -56,8 +56,6 @@ namespace escuela
                 Console.WriteLine("Debe ingresar un nombre válido");
             }
 
-            evaluacion.Alumno.Nombre = NombreAlumno;
-
             Console.WriteLine("Ingrese nota del alumno");
             NotaString = Console.ReadLine();
 
@@ -78,16 +76,17 @@ namespace escuela
                 catch (ArgumentOutOfRangeException argex)
                 {
 
-                    Console.WriteLine(argex);
+                    Console.WriteLine(argex.ParamName);
                 }
                 catch(Exception)
                 {
                     Console.WriteLine("Debe ingresar una nota válida");
                 }
+                finally
+                {
+                    Printer.WriteTitle("Saliendo del programa");
+                }
             }
-
-
-
         }
 
         private static void EjecutarEvento(object sender, EventArgs e)
