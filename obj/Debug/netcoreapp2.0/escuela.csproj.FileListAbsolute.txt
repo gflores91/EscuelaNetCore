@@ -1,10 +1,10 @@
+D:\Proyectos\Dotnet core\escuela\obj\Debug\netcoreapp2.0\escuela.csproj.CoreCompileInputs.cache
+D:\Proyectos\Dotnet core\escuela\obj\Debug\netcoreapp2.0\escuela.AssemblyInfoInputs.cache
+D:\Proyectos\Dotnet core\escuela\obj\Debug\netcoreapp2.0\escuela.AssemblyInfo.cs
 D:\Proyectos\Dotnet core\escuela\bin\Debug\netcoreapp2.0\escuela.deps.json
 D:\Proyectos\Dotnet core\escuela\bin\Debug\netcoreapp2.0\escuela.runtimeconfig.json
 D:\Proyectos\Dotnet core\escuela\bin\Debug\netcoreapp2.0\escuela.runtimeconfig.dev.json
 D:\Proyectos\Dotnet core\escuela\bin\Debug\netcoreapp2.0\escuela.dll
 D:\Proyectos\Dotnet core\escuela\bin\Debug\netcoreapp2.0\escuela.pdb
-D:\Proyectos\Dotnet core\escuela\obj\Debug\netcoreapp2.0\escuela.csproj.CoreCompileInputs.cache
-D:\Proyectos\Dotnet core\escuela\obj\Debug\netcoreapp2.0\escuela.AssemblyInfoInputs.cache
-D:\Proyectos\Dotnet core\escuela\obj\Debug\netcoreapp2.0\escuela.AssemblyInfo.cs
 D:\Proyectos\Dotnet core\escuela\obj\Debug\netcoreapp2.0\escuela.dll
 D:\Proyectos\Dotnet core\escuela\obj\Debug\netcoreapp2.0\escuela.pdb

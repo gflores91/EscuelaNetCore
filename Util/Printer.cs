@@ -22,6 +22,7 @@ namespace escuela.Util
         {
             while (repetir-- > 0)
             {
+                //Console.Beep(hz, tiempo);
                 Console.Beep(hz, tiempo);
             }
 
