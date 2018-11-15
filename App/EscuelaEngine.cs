@@ -226,6 +226,7 @@ namespace escuela.App
 
             return LObjInterfaces;
         }
+
         #endregion
 
         #region Diccionarios
@@ -260,8 +261,14 @@ namespace escuela.App
         #endregion
 
         #region Métodos para imprimir infomación
+        public void ImprimirEscuela(Escuela escuela)
+        {
+            Printer.WriteTitle("Datos de la escuela");
+            Console.WriteLine(escuela);
+        }
         public void ImprimirCursosEscuela(Escuela escuelaObj)
         {
+            Printer.WriteTitle("Cursos registrados");
             if (escuelaObj?.Cursos != null)
             {
                 foreach (var Curso in escuelaObj.Cursos)
@@ -273,6 +280,7 @@ namespace escuela.App
 
         public void ImprimirAlumnosCurso(Escuela escuelaObj)
         {
+            Printer.WriteTitle("Alumnos registrados por curso");
             if (escuelaObj?.Cursos != null)
             {
                 foreach (var curso in escuelaObj.Cursos)

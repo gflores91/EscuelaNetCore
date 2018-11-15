@@ -58,15 +58,16 @@ namespace escuela.App
             return Diccionario;
         }
 
-        public Dictionary<string, IEnumerable<Object>> ObtenerPromedio()
+        public Dictionary<string, List<PromedioAlumno>> ObtenerPromedio()
         {
-            var Promedio = new Dictionary<string, IEnumerable<Object>>();
+            var Promedio = new Dictionary<string, List<PromedioAlumno>>();
             var EvaluacionesPorAsignatura = DicEvaluacionesPorAsignatura();
 
             foreach (var evaluaciones in EvaluacionesPorAsignatura)
             {
-                var promedioalumno = from eval in evaluaciones.Value
-                            group eval by new{
+                var promedioalumno = new List<PromedioAlumno>();
+                var tmppromedioalumno = from eval in evaluaciones.Value
+                            group eval by new {
                                 eval.Alumno.Id,
                                 eval.Alumno.Nombre
                             } 
@@ -77,6 +78,8 @@ namespace escuela.App
                                 AlumnoNombre = GrupoAlumnos.Key.Nombre,
                                 Promedio = GrupoAlumnos.Average(evaluacion => evaluacion.Nota)
                             };
+                //promedioalumno.Add(tmppromedioalumno.Cast(List<PromedioAlumno>));
+                promedioalumno = tmppromedioalumno.ToList();
                 Promedio.Add(evaluaciones.Key, promedioalumno);
             }
 

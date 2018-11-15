@@ -27,5 +27,12 @@ namespace escuela.Util
             }
 
         }
+
+        public static void LimpiarConsola()
+        {
+            Console.WriteLine("\nPresione ENTER para limpiar la consola...");
+            Console.ReadLine();
+            Console.Clear();
+        }
     }
 }
