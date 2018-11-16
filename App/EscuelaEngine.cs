@@ -335,6 +335,34 @@ namespace escuela.App
                 }
             }
         }
+
+        public void ImprimirEvaluacionesxAsignaturas(Reporteador reporteador)
+        {
+            var LEvaluacionesPorAsignatura = reporteador.DicEvaluacionesPorAsignatura();
+
+            foreach (var evalxasigkey in LEvaluacionesPorAsignatura)
+            {
+                Printer.WriteTitle($"{evalxasigkey.Key}");
+                foreach (var evalxasigvalue in evalxasigkey.Value)
+                {
+                    Console.WriteLine(evalxasigvalue);
+                }
+            }
+        }
+
+        public void ImprimirPromAlxAsig(Reporteador reporteador)
+        {
+            var LPromediosAlumnos = reporteador.ObtenerPromedio();
+
+            foreach (var promxalkey in LPromediosAlumnos)
+            {
+                Printer.WriteTitle($"{promxalkey.Key}");
+                foreach (var promxalvalue in promxalkey.Value)
+                {
+                    Console.WriteLine($"\nNombre: {promxalvalue.AlumnoNombre}\nPromedio: {promxalvalue.Promedio}");
+                }
+            }
+        }
         #endregion
     }
 }
